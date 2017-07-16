@@ -11,8 +11,8 @@ $app = App::instance();
 
 
 $app->post('/get', 'Http\Controllers\Suppliers:get_reviews');
-$app->get('/login', 'Http\Controllers\Auth:login');
-$app->get('/login_vk', 'Http\Controllers\Auth:vk');
+$app->post('/login', 'Http\Controllers\Auth:login');
+$app->post('/setProfile', 'Http\Controllers\setProfile:registration');
 $app->get('/{page}', 'Http\Controllers\Suppliers:get_Suppliers');
 $app->get('/', 'Http\Controllers\Suppliers:get_Suppliers');
 

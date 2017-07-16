@@ -1,23 +1,32 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Zver
+ * Date: 16.07.2017
+ * Time: 19:22
+ */
 
 namespace Http\Controllers;
 
-class Auth extends \AbstractController {
 
-    public function login($request, $response, $args) {
+class setProfile extends \AbstractController {
+
+    public function registration($request, $response, $args) {
 
         $getBody = \Ohanzee\Helper\Arr::extract(
             $request->getParsedBody(),
             [
                 'login',
-                'password'
+                'password',
+                'phone',
+                'i_accept_the_rules'
             ], ''
         );
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'https://sp2all.ru/api/login');
+        curl_setopt($ch, CURLOPT_URL, 'https://sp2all.ru/api/setProfile');
         curl_setopt($ch, CURLOPT_HEADER, true);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $getBody);
         $data = curl_exec($ch);
@@ -32,9 +41,5 @@ class Auth extends \AbstractController {
 
         return $body;
     }
+
 }
-
-
-
-
-

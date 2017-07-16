@@ -96,18 +96,7 @@ function page(page, cur) {
     });
 
 }
-function success(data) {
-    console.log(data);
-}
-function get_reviews(id) {
 
-    $.post('http://top.local/get',
-        {
-            _cookie: $.cookie('_PHPSESSID'),
-            id:id
-        }
-        ,success, 'json');
-}
 $('body').on('click','.noLink',(e)=>{
     e.preventDefault();
     history.replaceState(3, "Title", e.target.href);

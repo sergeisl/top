@@ -10,7 +10,14 @@
     margin-right: 5px;
     float: right;
 }
+.icon{
+    margin-top: -10px;
+}
+.in_icon{
+    margin-top: -7px;
+}
 .ad-menu{
+    padding: 10px 0;
     background: #444;
     background: rgba(0, 0, 0, 0.7);
 }
@@ -32,7 +39,6 @@
 .ad-menu li a {
     display: block;
     text-decoration: none;
-    padding: 10px 0;
     width: 100%;
     color: #fff;
     opacity: 0.8;
