@@ -46,9 +46,9 @@
                     <div class="modal__dialog">
                         <div class="modal__close" onclick="return close_modal('login');"></div>
                         <form method="post" class="login">
-                            <input type="text" name="login">
-                            <input type="password" name="password">
-                            <input type="submit">
+                            <input type="text"  placeholder="Укажите логин!" class="textbox" required name="login">
+                            <input type="password"  placeholder="Укажите пароль!" class="textbox" name="password">
+                            <input type="submit" class="button">
                         </form>
                     </div>
                 </div>
@@ -58,11 +58,11 @@
                     <div class="modal__dialog">
                         <div class="modal__close" onclick="return close_modal('setProfile');"></div>
                         <form method="post" class="setProfile">
-                            <input type="text" name="phone">
-                            <input type="text" name="login">
-                            <input type="password" name="password">
+                            <input type="text" placeholder="Телейон" class="textbox" required name="phone">
+                            <input type="text" placeholder="Укажите логин!" class="textbox" required name="login">
+                            <input type="password" placeholder="Укажите пароль!" class="textbox" name="password">
                             <input type="checkbox" name="i_accept_the_rules">
-                            <input type="submit">
+                            <input type="submit" class="button">
                         </form>
                     </div>
                 </div>

@@ -11,10 +11,13 @@
                 {% if item.state == '5' %}
                     <li>
                         <span>
-                            <a href="{{ page }}#m?id={{ item.id }}" data-id="{{ item.id }}" class="noLink">{{ item.title }}</a>
-                            <img src="https://sp2all.ru/{{item.imgs[0][0]}}">
+                             <div class="row__col row__col_xs_12 row__col_sm_6 row__col_lg_6">
+                                 <img src="https://sp2all.ru/{{item.imgs[0][0]}}">
+                            </div>
+                            <div class="row__col row__col_xs_12 row__col_sm_6 row__col_lg_6">
+                                <a href="{{ page }}#m?id={{ item.id }}" data-id="{{ item.id }}" class="noLink top_title">{{ item.title }}</a>
+                            </div>
                         </span>
-
                     </li>
                 {% endif %}
             {% endfor %}
@@ -61,7 +64,7 @@
         $('.bxslider').bxSlider({
             minSlides: 1,
             maxSlides: 4,
-            slideWidth: 200,
+            slideWidth: 340,
             slideMargin: 10
         });
         $('.bxslider_top').bxSlider({

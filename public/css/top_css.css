@@ -33,11 +33,75 @@
     display: inline-flex;
     display: none;
 }
+.top_title{
+    margin-top: 22px;
+    position: absolute;
+    text-decoration: none;
+    font-size: 20px;
+    color: #444444;
+}
 .bx-wrapper{
     margin-left: auto;
     margin-right: auto;
 }
 .bx-wrapper img{
-    height: 280px;
+    max-height: 400px;
+    display: inline !important;
+}
+.bx-wrapper, .bx-controls-direction a{
+    z-index: 100 !important;
 }
 
+
+/* Базовые стили формы */
+.login,.setProfile form {
+    margin:0 auto;
+    max-width:95%;
+    box-sizing:border-box;
+    padding:40px;
+    border-radius:5px;
+    background:RGBA(255,255,255,1);
+    -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
+    box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
+}
+/* Стили полей ввода */
+.textbox{
+    height:50px;
+    width:100%;
+    border-radius:3px;
+    border:rgba(0,0,0,.3) 2px solid;
+    box-sizing:border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size:18px;
+    padding:10px;
+    margin-bottom:30px;
+}
+.textbox:focus{
+    outline:none;
+    border:rgba(24,149,215,1) 2px solid;
+    color:rgba(24,149,215,1);
+}
+/* Стили текстового поля */
+
+/* Базовые стили кнопки */
+.button{
+    margin: auto;
+    height:50px;
+    max-width: 150px;
+    min-width: 50px;
+    border-radius:3px;
+    border:rgba(0,0,0,.3) 0px solid;
+    box-sizing:border-box;
+    padding:10px;
+    background: #444444;
+    color:#FFF;
+    font-family: 'Open Sans', sans-serif;
+    font-weight:400;
+    font-size: 16pt;
+    transition:background .4s;
+    cursor:pointer;
+}
+/* Изменение фона кнопки при наведении */
+.button:hover{
+    background: #2f2f2f;
+}
