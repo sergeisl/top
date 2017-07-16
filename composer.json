@@ -1,0 +1,17 @@
+{
+    "name": "top",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+    ],
+    "autoload": {
+        "psr-0": {"": "classes/"}
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "slim/slim": "3.x-dev",
+        "slim/twig-view": "dev-master",
+        "ohanzee/helpers": "dev-master"
+
+    }
+}

@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %} 
+<div class="container">
+  
+  <form class="center" method="post">
+    <div class="row">
+      <div class="input-field col s12 offset-m4 m4">
+        <input id="email" name="email" type="text" value="{{ data.email }}">
+        <label for="email">Введите E-mail</label>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field col s12">
+        <button type="submit" class="waves-effect waves-light btn">Востановить пароль</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% for error in errors %}
+<script>
+  Materialize.toast('{{ error }}', 5000);
+</script>
+{% endfor %}
+
+{% endblock %}
+
+{% block nav %}{% endblock %}
