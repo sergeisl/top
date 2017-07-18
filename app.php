@@ -9,11 +9,12 @@ session_start();
 
 $app = App::instance();
 
-
+//$app->get('/get_site', 'Http\Controllers\Status:get_site');
 $app->post('/get', 'Http\Controllers\Suppliers:get_reviews');
 $app->post('/login', 'Http\Controllers\Auth:login');
 $app->post('/setProfile', 'Http\Controllers\setProfile:registration');
 $app->get('/{page}', 'Http\Controllers\Suppliers:get_Suppliers');
+$app->get('/supplier/{id}', 'Http\Controllers\Suppliers:get_Supplier');
 $app->get('/', 'Http\Controllers\Suppliers:get_Suppliers');
 
 

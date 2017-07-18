@@ -7,98 +7,49 @@ use Carbon\Carbon;
 
 class Status extends \AbstractController{
 
-    public function index($request, $response, $args) {
+    public function get_site(){
+        set_time_limit(99999999999999999);
+        for ($count = 1;$count<=2;$count++) {
 
-    	$status = Model::factory('Models\Status')
-        ->order_by_desc('id')
-        ->find_many();
+            $data = json_decode(file_get_contents("https://sp2all.ru/api/getSuppliers/?&page=$count&format=json"), true);
 
-      $data = [];
-      foreach ($status as $item) {
+//            $fp = fopen('file.txt', 'a+');
 
-          $data[] = $item->as_array();
-      }
+            foreach ($data["items"] as $item) {
 
-      return $this->view->render($response, 'status/index.html', 
-	    	[
-	    		'data' => $data
-	    	]
-	    );
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, "{$item['site']}");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+                $output = curl_exec($ch);
+                curl_close($ch);
+
+                if ($output) {
+
+           /*         $subject = $output;
+                    $pattern = '/src=".*?logo.*?\.(svg|jpg|png|gif).*?"/im';
+                    preg_match_all($pattern, $subject, $matches);
+
+                    echo "-------------------<br>есть:{$item['site']}   ID:{$item['id']}<br>";
+
+                    for ($count = 0;$count<count($matches[0]);$count++) {
+                        preg_match_all('/"(.*?)"/', $matches[0][$count], $logo);
+
+                        if(!preg_match('/(http:\/\/)/', $logo[1][0], $logo_res)){
+                            echo '<img src="'.$item['site'].'/'.$logo[1][0].'">';
+                        } else {
+                            echo '<img src="'.$logo[1][0].'">';
+                        }
+                        echo '<br>';
+                    }*/
+
+                } else {
+                   // fwrite($fp, "ID:{$item['id']}:{$item['site']}"."\r\n");
+                }
+            }
+          //  fclose($fp);
+        }
 
     }
 
-    public function create($request, $response, $args) {
-
-      $data = \Ohanzee\Helper\Arr::extract(
-        $request->getParsedBody(),
-        [
-          'title',
-          'description'
-        ], ''
-      );
-
-      if ($request->isPost()) {
-
-	    	$status = Model::factory('Models\Status')->create($data);
-
-				$status->save();
-
-				return $response->withRedirect('/settings/status/edit/' . $status->id);
-
-      }
-
-      return $this->view->render($response, 'status/create.html', 
-	    	[
-          'data' => $data
-        ]
-	    );
-	    
-    }
-
-    public function edit($request, $response, $args) {
-
-    	$id = (int) $args['id'];
-
-    	$status = Model::factory('Models\Status')->find_one($id);
-
-    	$data = $status->as_array();
-
-      if ($request->isPost()) {
-
-	      $data = \Ohanzee\Helper\Arr::extract(
-	        $request->getParsedBody(),
-	        [
-	          'title',
-            'description'
-	        ], ''
-	      );
-
-	    	$status->values($data);
-
-				$status->save();
-
-        $data['id'] = $id;
-
-      }
-
-      return $this->view->render($response, 'status/edit.html', 
-	    	[
-          'data' => $data
-        ]
-	    );
-	    
-    }
-
-    public function delete($request, $response, $args) {
-
-    	$id = (int) $args['id'];
-
-    	$order = Model::factory('Models\Status')->find_one($id);
-
-    	$order->delete();
-
-    	return $response->withRedirect('/settings/status');
-	    
-    }
-    
 }

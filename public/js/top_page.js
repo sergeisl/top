@@ -9,6 +9,9 @@ function open_modal(id) {
         document.body.style.overflowY = 'hidden';
         modals.classList.add('modal_visible');
     }
+    if((id == 'login') || (id == 'setProfile') ){
+        $(modals).find('.modal__dialog').addClass('form_auto');
+    }
     return false;
 }
 function close_modal(id) {
@@ -33,13 +36,11 @@ function page(page, cur) {
         processData: false,
         dataType: 'json',
         success: function(data){
-            console.log(data)
             if(data){
                 var str = '';
                 data.items.forEach(function(item){
                     var imgs1 = '';
                     item.imgs.forEach(function(img) {
-                        console.log(img);
                         if (img[0] != "/images/noimg.gif") {
                             imgs1 += '<li><img src="https://sp2all.ru/' + img[0] + '"></li>';
                         }
@@ -51,7 +52,7 @@ function page(page, cur) {
             str += '  ' +
                 '<div class="row__col row__col_xs_12 row__col_sm_6 row__col_lg_3">' +
                     '<div class="item">  ' +
-                        '<a href="'+page+'#m?id='+item.id+'" data-id="'+item.id+'" class="noLink">'+item.title+'</a>' +
+                        '<a href="/supplier/'+toTranslit(item.title)+'-'+item.id+'" data-id="'+item.id+'" class="noLink">'+item.title+'</a>' +
                         '<br><br>' +
                         '<div>' +
                             '<img src="https://sp2all.ru/'+item.imgs[0][0]+'" class="imgs">' +
@@ -60,8 +61,11 @@ function page(page, cur) {
                             '<div class="modal__wrapper">'+
                                 '<div class="modal__dialog">' +
                                     '<div class="modal__close" onclick="return close_modal('+item.id+');"></div>'+slider+
-
-                                    ' <p style="">'+item.desc+'</p>'+
+                                    '<div class="modal_content">'+
+                                        ' <p id="text">'+item.desc+'</p>'+
+                                        '<a href="#" class="reviews" data-id="'+item.id+'">Отзывы</a>'+
+                                        '<div class="reviews_content'+item.id+' text"></div>'+
+                                    '</div>'+
                                 '</div>'+
                             '</div>'+
                         '</div>'+
@@ -107,3 +111,26 @@ $('body').on('click','.reviews',(e)=>{
     e.preventDefault();
     get_reviews($(e.target).data('id'));
 });
+
+
+function toTranslit(text) {
+
+   let text1 = text.replace(/([а-яё])|([\s_-])|([^a-z\d])/gi,
+        function (all, ch, space, words, i) {
+            if (space || words) {
+                return space ? ' ' : '-';
+            }
+            var code = ch.charCodeAt(0),
+                index = code == 1025 || code == 1105 ? 0 :
+                    code > 1071 ? code - 1071 : code - 1039,
+                t = ['yo', 'a', 'b', 'v', 'g', 'd', 'e', 'zh',
+                    'z', 'i', 'y', 'k', 'l', 'm', 'n', 'o', 'p',
+                    'r', 's', 't', 'u', 'f', 'h', 'c', 'ch', 'sh',
+                    'shch', '', 'y', '', 'e', 'yu', 'ya'
+                ];
+            return t[index];
+        });
+    text1 = text1.replace('/[^a-zA-Z0-9]/','-');
+    text1 = text1.replace(/\s/g,'-');
+    return text1;
+}

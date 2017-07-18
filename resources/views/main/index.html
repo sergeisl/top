@@ -1,33 +1,38 @@
 {% extends "layout.html" %}
+
 {% block content %}
+    <ul class="bxslider_top">
+        {% for item in vip.items  %}
+        {% if item.variation == '2' %}
+        <li>
+            <div class="row slider_top_img" style="background-image: url(https://sp2all.ru/{{item.imgs[0][0]}});">
+
+            </div>
+            <div class="slider_top_content">
+
+                    <div class="row__col row__col_xs_12 row__col_sm_6 row__col_lg_4 row__col_lg-offset_2">
+                        <a href="/supplier/{{title[item.id]}}-{{ item.id }}" data-id="{{ item.id }}" class="noLink top_title">{{ item.title }}</a>
+                    </div>
+                    <div class="row__col row__col_xs_12 row__col_sm_6 row__col_lg_4 row__col_lg-offset_2">
+                        <!--   <img src="https://sp2all.ru/{{item.imgs[0][0]}}">-->
+                    </div>
+            </div>
+
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
     <div class="addButtom">
         <div class="prev_page"></div>
         <div class="load_page"></div>
     </div>
-    </div>
     <div class="container">
-        <ul class="bxslider_top">
-            {% for item in data.items  %}
-                {% if item.state == '5' %}
-                    <li>
-                        <span>
-                             <div class="row__col row__col_xs_12 row__col_sm_6 row__col_lg_6">
-                                 <img src="https://sp2all.ru/{{item.imgs[0][0]}}">
-                            </div>
-                            <div class="row__col row__col_xs_12 row__col_sm_6 row__col_lg_6">
-                                <a href="{{ page }}#m?id={{ item.id }}" data-id="{{ item.id }}" class="noLink top_title">{{ item.title }}</a>
-                            </div>
-                        </span>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
         <div class="row">
             {% for item in data.items  %}
-            <div class="row__col row__col_xs_12 row__col_sm_6 row__col_lg_3">
+            <div class="row__col row__col_xs_12 row__col_sm_6 row__col_lg_4">
                 <div class="item">
                     <div>
-                        <a href="{{ page }}#m?id={{ item.id }}" data-id="{{ item.id }}" class="noLink">{{ item.title }}</a>
+                        <a href="/supplier/{{title[item.id]}}-{{ item.id }}" data-id="{{ item.id }}" class="noLink">{{ item.title }}</a>
                     </div>
                     {% if item.imgs[0][0] is not empty %}
                         <img src="https://sp2all.ru/{{item.imgs[0][0]}}" class="imgs">
@@ -47,10 +52,14 @@
                                     {% endfor %}
                                 </ul>
                                 {% endif %}
-                                <a href="#" class="reviews" data-id="{{ item.id }}">Отзывы</a>
-                                <p>
-                                    {{ desc[item.id]|raw }}
-                                </p>
+
+                                <div class="modal_content">
+                                    <p id="text">
+                                        {{ desc[item.id]|raw }}
+                                    </p>
+                                    <a href="#" class="reviews" data-id="{{ item.id }}">Отзывы</a>
+                                    <div class="reviews_content{{ item.id }} text"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -59,21 +68,20 @@
             {% endfor %}
         </div>
     </div>
-    <script src="js/top_page.js"></script>
-    <script>
-        $('.bxslider').bxSlider({
-            minSlides: 1,
-            maxSlides: 4,
-            slideWidth: 340,
-            slideMargin: 10
-        });
-        $('.bxslider_top').bxSlider({
-            minSlides: 1,
-            maxSlides: 1,
-            slideWidth: 1024,
-            slideMargin: 10
-        });
-    </script>
+<script>
+    $('.bxslider').bxSlider({
+        minSlides: 1,
+        maxSlides: 4,
+        slideWidth: 340,
+        slideMargin: 10
+    });
+    $('.bxslider_top').bxSlider({
+        minSlides: 1,
+        maxSlides: 1,
+        //slideWidth: 1024,
+       // slideMargin: 10
+    });
+</script>
     <div>
         <div class="addButtom">
             <div class="next_page"></div>

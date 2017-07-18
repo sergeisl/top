@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    {% if data.imgs[0][0] != "/images/noimg.gif" %}
+    <ul class="bxslider">
+        {% for img in data.imgs  %}
+        {% if img[0] != "/images/noimg.gif" %}
+        <img src="https://sp2all.ru/{{ img[0] }}" class="imgs">
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <div class="container" itemscope itemtype="http://schema.org/Organization">
+        <span itemprop="name">{{ data.title }}</span>
+        <div class="modal_content">
+            <p id="text">
+                {{ desc|raw }}
+            </p>
+            <a href="#" class="reviews" data-id="{{ data.id }}">Отзывы</a>
+            <div class="reviews_content{{ data.id }} text"></div>
+        </div>
+    </div>
+    <script>
+        $('.bxslider').bxSlider({
+            minSlides: 1,
+            maxSlides: 4,
+            slideWidth: 340,
+            slideMargin: 10
+        });
+    </script>
+{% endblock %}

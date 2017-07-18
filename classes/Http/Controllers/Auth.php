@@ -27,7 +27,9 @@ class Auth extends \AbstractController {
 
         foreach ($res[1] as $key => $value) {
             setcookie('_'.$value, $res[2][$key]);
+            $_SESSION[cookis][$value] = $res[2][$key];
         };
+
         curl_close($ch);
 
         return $body;

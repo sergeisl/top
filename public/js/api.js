@@ -65,8 +65,20 @@ function get_reviews(id) {
         {
             _cookie: $.cookie('_PHPSESSID'),
             id:id
-        },success, 'json');
+        },(data)=>{success(data,id);}
+        , 'json');
 }
-function success(data) {
-    console.log(data);
+var reviews_empty = true;
+
+function success(data,id) {
+    let class_elem = '.reviews_content'+id;
+    if(data && reviews_empty){
+        var str_reviews = '';
+        data.reviews.forEach(function(item) {
+            str_reviews +='<br><li><b>'+item.user.login+'</b> <i>'+item.added_date+'</i><br>'+item.response+'</li>';
+        });
+        $(class_elem).prepend(str_reviews).appendTo(class_elem);
+        reviews_empty = false;
+    }
+
 }

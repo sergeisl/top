@@ -1,18 +1,24 @@
 .item{
-    border: 1px solid #616161;
+    /border: 1px solid #616161;
     padding: 20px;
     text-align: center;
     margin-top: 35px;
     background-color: #fff;
-    box-shadow: 1px 1px 0px 10px #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 2px 10px 0px rgba(49, 49, 50, 0.13);
+    box-shadow: 0px 2px 10px 0px rgba(49, 49, 50, 0.13);
 }
-.item p{
+
+.modal_content p{
     color: #888888;
-    text-align: left;
     outline: none;
     font-family: Arial, sans-serif;
     font-size: 12px;
+    text-align: left;
+    white-space: pre-wrap;
 }
+
 .item a{
     text-decoration: none;
     color: #2f2f2f;
@@ -37,7 +43,7 @@
     margin-top: 22px;
     position: absolute;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 25px;
     color: #444444;
 }
 .bx-wrapper{
@@ -51,20 +57,30 @@
 .bx-wrapper, .bx-controls-direction a{
     z-index: 100 !important;
 }
+.text{
+    color: #888888;
+    outline: none;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    text-align: left;
+    white-space: pre-wrap;
 
+}
+.text > li {
+    list-style: none;
+}
 
-/* Базовые стили формы */
-.login,.setProfile form {
+.login,.setProfile {
     margin:0 auto;
     max-width:95%;
-    box-sizing:border-box;
+    /box-sizing:border-box;
     padding:40px;
     border-radius:5px;
     background:RGBA(255,255,255,1);
     -webkit-box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
     box-shadow:  0px 0px 15px 0px rgba(0, 0, 0, .45);
 }
-/* Стили полей ввода */
+/* Поля рег и лог*/
 .textbox{
     height:50px;
     width:100%;
@@ -80,10 +96,9 @@
     outline:none;
     border:rgba(24,149,215,1) 2px solid;
     color:rgba(24,149,215,1);
+    box-sizing: border-box;
 }
-/* Стили текстового поля */
 
-/* Базовые стили кнопки */
 .button{
     margin: auto;
     height:50px;
@@ -101,7 +116,29 @@
     transition:background .4s;
     cursor:pointer;
 }
-/* Изменение фона кнопки при наведении */
 .button:hover{
     background: #2f2f2f;
+}
+.bx-wrapper .bx-pager {
+    position: absolute;
+    bottom: 20px!important;
+    width: 100%;
+}
+.bx-wrapper{
+    border: none!important;
+}
+.slider_top_img{
+    background: #fff center/cover no-repeat;
+    min-height: 500px;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    filter: blur(5px);
+}
+.slider_top_content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: rgba(255,255,255,.3);
 }

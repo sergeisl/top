@@ -11,7 +11,8 @@
     "require": {
         "slim/slim": "3.x-dev",
         "slim/twig-view": "dev-master",
-        "ohanzee/helpers": "dev-master"
+        "ohanzee/helpers": "dev-master",
+        "slim/flash": "~0.1.0"
 
     }
 }
